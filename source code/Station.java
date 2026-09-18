@@ -18,7 +18,7 @@ public class Station {
     public String getLineName() { return lineName; }
     public double getDistanceFromOrigin() { return distanceFromOrigin; }
 
-    @Override
+    
     public String toString() {
         return stationId + " - " + stationName + " (" + lineName + ")";
     }
