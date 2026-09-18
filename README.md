@@ -78,14 +78,14 @@ cd Metro-Management-System
   * transactions
   * journeys
     
-5. Configure Database Connection
+## 5. Configure Database Connection
 Open the database configuration file and update the following details according to your MySQL installation:
 
-6. Compile the Project
+## 6. Compile the Project
 If Maven is configured, run:
 mvn clean compile
 
-8. Run the Application
+## 7. Run the Application
 The main entry point of the application is:
 
 metro.Main
@@ -96,7 +96,7 @@ mvn exec:java
 
 Alternatively, the project can be compiled and executed directly using the Java compiler.
 
-8. Use the Application
+## 8. Use the Application
 After launching, follow the command-line menu to perform operations such as:
 
 Passenger registration
@@ -111,4 +111,115 @@ Journey history
 Transaction history
 
 The application uses standard console input/output and does not require a GUI.
+
+# INSTRUCTIONS FOR TESTING 
+---
+## Instructions for Testing
+
+The Metro Management System can be tested through the command-line interface. Testing should be performed after setting up the MySQL database and configuring the database connection.
+
+### 1. Start the Application
+
+Run the main application:
+
+```bash
+mvn exec:java
+```
+
+or run:
+
+```text
+metro.Main
+```
+
+### 2. Test Passenger Registration
+
+* Select the **Passenger Registration** option.
+* Enter valid passenger details.
+* Verify that the passenger is successfully registered.
+* Try entering invalid or duplicate details and verify that an appropriate error message is displayed.
+
+### 3. Test Passenger Login
+
+* Enter valid login credentials.
+* Verify that the passenger can log in successfully.
+* Enter incorrect credentials and verify that login is rejected.
+
+### 4. Test Smart Card
+
+Test the following operations:
+
+* Issue a smart card to a passenger.
+* View card details.
+* Recharge the smart card with a valid amount.
+* Verify that the updated balance is displayed correctly.
+
+### 5. Test Metro Entry and Exit
+
+* Select a valid entry station.
+* Start a journey using a valid smart card.
+* Select a valid exit station.
+* Verify that the journey distance is calculated.
+* Verify that the correct fare is calculated and deducted from the smart-card balance.
+
+### 6. Test Fare Calculation
+
+Verify the fare model using the following test cases:
+
+| Test Case | Distance | Expected Fare |
+| --------- | -------: | ------------: |
+| TC01      |     3 km |           ₹10 |
+| TC02      |     5 km |           ₹10 |
+| TC03      |     7 km |           ₹20 |
+| TC04      |    10 km |           ₹20 |
+| TC05      |    15 km |           ₹30 |
+| TC06      |    20 km |           ₹30 |
+| TC07      |    25 km |           ₹40 |
+
+### 7. Test Insufficient Balance
+
+* Use a smart card with insufficient balance.
+* Attempt a journey whose fare is greater than the available balance.
+* Verify that the transaction is rejected and an appropriate error message is displayed.
+
+### 8. Test Invalid Input and Exception Handling
+
+Test invalid inputs such as:
+
+* Negative recharge amount
+* Invalid passenger ID
+* Invalid smart-card ID
+* Invalid station ID
+* Invalid distance
+* Empty input fields
+* Insufficient card balance
+
+Verify that the application handles these errors without crashing.
+
+### 9. Test Journey and Transaction History
+
+After completing journeys and transactions:
+
+* Open **Journey History**.
+* Verify that completed journeys are displayed correctly.
+* Open **Transaction History**.
+* Verify that recharge and fare deduction transactions are recorded correctly.
+
+### 10. Database Verification
+
+Verify that the corresponding records are correctly stored in MySQL tables:
+
+```text
+passengers
+smart_cards
+stations
+journeys
+transactions
+admins
+```
+
+### Testing Result
+
+The application is considered successfully tested when all major functional operations produce the expected output, invalid inputs are handled properly, and the corresponding database records are correctly created or updated.
+
   
